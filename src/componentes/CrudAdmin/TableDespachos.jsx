@@ -6,16 +6,18 @@ import { FormCierreDespacho } from "./FormCierreDespacho";
 export const TableDespachos = () => {
   const [despachos, setDespachos] = useState([]);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const despacho = async () => {
     await axios
-      .get("http://192.168.3.20/api/v1/despachos", {
+      // USAR BACKTICKS (``) Y LA VARIABLE
+      .get(`${API_URL}/api/v1/despachos`, {
         headers:{
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         }
       })
       .then((response) => {
-        console.log(response.data);
         setDespachos(response.data);
       });
   };

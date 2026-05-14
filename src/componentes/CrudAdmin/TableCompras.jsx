@@ -6,22 +6,18 @@ import axios from "axios";
 export const TableCompras = () => {
   const [ventas, setVentas] = useState([]);
 
-  const compras = async () => {
-    await axios.get("http://192.168.30/api/v1/ventas", {
-      headers:{
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-  }
-    }).then((response) => {
-      console.log(response.data);
-      setVentas(response.data);
-    });
-  };
-  // Llamada a la función para obtener los datos cuando el componente se monta
-  useEffect(() => {
-    compras();
-  }, []);
+  const API_URL = import.meta.env.VITE_API_URL;
 
+  const compras = async () => {
+  await axios.get(`${API_URL}/api/v1/ventas`, {
+    headers:{
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then((response) => {
+    setVentas(response.data);
+  });
+};
   //state que controla el modal
   const [openModal, setOpenModal] = useState(false);
 
