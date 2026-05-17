@@ -1,5 +1,5 @@
 # 1. Fase de construcción
-FROM node:18-alpine AS build
+FROM nginxinc/nginx-unprivileged:alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
